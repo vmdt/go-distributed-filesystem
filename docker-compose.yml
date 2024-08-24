@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  supernode:
+    build:
+      context: ./super_node
+    container_name: supernode
+    ports:
+      - "9000:9000"
+    networks:
+      mynetwork:
+        ipv4_address: 192.168.0.9
+  
+  cluster1:
+    build:
+      context: .
+    container_name: cluster1
+    ports:
+      - "9001:9001"
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24

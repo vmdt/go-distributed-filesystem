@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "./fileservice";
+
+service FileService {
+    rpc getClusterStats (Empty) returns (ClusterStats);
+    rpc getLeaderInfo (ClusterInfo) returns (ack);
+}
+
+message ack {
+    bool success = 1;
+    string message = 2;
+}
+
+message ClusterInfo {
+    string ip = 1;
+    string port = 2;
+    string clusterName = 3;
+}
+
+message ClusterStats {
+    int32 cpuUsage = 1;
+    int32 diskSpace = 2;
+    int32 usedMem = 3;
+}
+
+message Empty {}

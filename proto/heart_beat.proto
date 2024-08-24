@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service HeartBeat {
+    rpc isAlive (NodeInfo) returns (Stats);
+}
+
+message NodeInfo {
+    string ip = 1;
+    string port = 2;
+}
+
+message Stats {
+    string cpuUsage = 1;
+    string diskUsage = 2;
+    string memUsage = 3;
+}
